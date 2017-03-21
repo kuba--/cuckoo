@@ -1,4 +1,5 @@
 [![GoDoc](https://godoc.org/github.com/kuba--/cuckoo?status.svg)](http://godoc.org/github.com/kuba--/cuckoo)
+[![Go Report Card](https://goreportcard.com/badge/github.com/kuba--/cuckoo)](https://goreportcard.com/report/github.com/kuba--/cuckoo)
 
 # Cuckoo Filter: Practically Better Than Bloom
 Package _cuckoo_ provides a Cuckoo Filter (Practically Better Than Bloom).
