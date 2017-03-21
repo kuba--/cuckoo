@@ -2,9 +2,10 @@ package cuckoo
 
 import "github.com/kuba--/cuckoo"
 
-func Fuzz(data []byte) int {
-	f := cuckoo.NewFilter(32 * 1024 * 1024)
+var f = cuckoo.NewFilter(32 * 1024 * 1024)
 
+// Fuzz test function
+func Fuzz(data []byte) int {
 	if f.Lookup(data) {
 		if !f.Delete(data) {
 			return 0
