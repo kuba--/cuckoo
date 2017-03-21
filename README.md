@@ -1,3 +1,5 @@
+[![GoDoc](https://godoc.org/github.com/kuba--/cuckoo?status.svg)](http://godoc.org/github.com/kuba--/cuckoo)
+
 # Cuckoo Filter: Practically Better Than Bloom
 Package _cuckoo_ provides a Cuckoo Filter (Practically Better Than Bloom).
 Cuckoo filters provide the ﬂexibility to add and remove items dynamically.
