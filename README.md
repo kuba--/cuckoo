@@ -15,7 +15,7 @@ Implementation is based heavily on whitepaper: "Cuckoo Filter: Better Than Bloom
 ```go
     var item []byte
 
-    // Create a new filter with 32MB capacity.
+    // Create a new filter with 32MB capacity
     f := cuckoo.NewFilter(32 * 1024 * 1024)
 
     if f.Lookup(item) {
