@@ -5,34 +5,6 @@ import (
 	"testing"
 )
 
-func TestFilter(t *testing.T) {
-	f := NewFilter(0)
-	cnt := f.Count()
-	if cnt != 0 {
-		t.Error(cnt)
-	}
-
-	if err := f.Insert([]byte("foo")); err != nil {
-		t.Error(err)
-	}
-
-	t.Log(f.Lookup([]byte("foo")))
-	t.Log(f.Lookup([]byte("bar")))
-
-	cnt = f.Count()
-	if cnt != 1 {
-		t.Error(cnt)
-	}
-
-	t.Log(f.Delete([]byte("foo")))
-	t.Log(f.Delete([]byte("bar")))
-
-	cnt = f.Count()
-	if cnt != 0 {
-		t.Error(cnt)
-	}
-}
-
 func TestIndex(t *testing.T) {
 	f := NewFilter(0)
 	data := []byte("ABCDEFGHIJKLMNOPRSTUWXYZ")
@@ -50,6 +22,64 @@ func TestIndex(t *testing.T) {
 	}
 	if i2 != i22 {
 		t.Error(i2, i22)
+	}
+}
+
+func TestFilter(t *testing.T) {
+	const maxItems = 32 * 1024
+	const capacity = 1024 * maxItems
+
+	f := NewFilter(capacity)
+	cnt := f.Count()
+	if cnt != 0 {
+		t.Error(cnt)
+	}
+
+	// Generate test cache
+	cache := make(map[string]int)
+	for i := 0; i < maxItems; i++ {
+		n := 1 + rand.Intn(0xff)
+		var item []byte
+		for j := 0; j < n; j++ {
+			item = append(item, byte(rand.Intn(0xff)))
+		}
+		key := string(item)
+		if _, exists := cache[key]; exists {
+			continue
+		}
+
+		cache[string(item)] = i
+		if err := f.Insert(item); err != nil {
+			t.Errorf("[%d]: count: %v: %v\n", i, f.Count(), err)
+		}
+	}
+
+	// Count number of false positives
+	nerrors := 0
+	for i := 0; i < maxItems; i++ {
+		n := 1 + rand.Intn(0xff)
+		var item []byte
+		for j := 0; j < n; j++ {
+			item = append(item, byte(rand.Intn(0xff)))
+		}
+
+		if _, exists := cache[string(item)]; exists != f.Lookup(item) {
+			nerrors++
+		}
+	}
+
+	t.Logf("Error rate (%.1f / %.1f): %.5f\n", float32(nerrors), float32(f.Count()), (float32(nerrors) / float32(f.Count())))
+
+	// Cleaning up
+	for k := range cache {
+		if !f.Delete([]byte(k)) {
+			t.Error(k)
+		}
+	}
+
+	cnt = f.Count()
+	if cnt != 0 {
+		t.Error(cnt)
 	}
 }
 

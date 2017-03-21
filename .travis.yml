@@ -14,7 +14,8 @@ install:
 
 script:
   - go vet
-  - go test -v -race
+  - go test -v -race -cover internal/*
+  - go test -v -race -cover
   - go test -bench Insert
   - go test -bench Lookup
   - go test -bench Delete
