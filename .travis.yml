@@ -1,0 +1,21 @@
+language: go
+sudo: false
+
+go:
+  - 1.8
+  - tip
+
+install:
+  - go version
+  - export GOBIN="$GOPATH/bin"
+  - export PATH="$PATH:$GOBIN"
+  - go get golang.org/x/tools/cmd/goimports
+  - go build
+
+script:
+  - go vet
+  - go test -v -race
+  - go test -bench Insert
+  - go test -bench Lookup
+  - go test -bench Delete
+  - diff <(GOPATH="$PWD:$PWD/vendor" goimports -d .) <(printf "")
