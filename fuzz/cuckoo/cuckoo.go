@@ -1,10 +1,6 @@
 package cuckoo
 
-import (
-	"log"
-
-	"github.com/kuba--/cuckoo"
-)
+import "github.com/kuba--/cuckoo"
 
 func Fuzz(data []byte) int {
 	f := cuckoo.NewFilter(32 * 1024 * 1024)
@@ -15,8 +11,7 @@ func Fuzz(data []byte) int {
 		}
 	} else {
 		if err := f.Insert(data); err != nil {
-			log.Println(err)
-			return 0
+			panic(err)
 		}
 	}
 	return 1
