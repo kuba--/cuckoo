@@ -116,7 +116,7 @@ func (f *Filter) Lookup(item []byte) bool {
 }
 
 /*
-Delete deletes an item from teh filter.
+Delete deletes an item from the filter.
 Pseudo code:
 	f = fingerprint(x);
 	i1 = hash(x);

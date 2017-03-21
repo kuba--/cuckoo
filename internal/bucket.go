@@ -1,6 +1,6 @@
 package internal
 
-// Number of bytes per Bucket
+// BucketSize defines number of bytes per Bucket
 const BucketSize = 4
 
 // Bucket represents a row in Cuckoo Filter's hashtable.
