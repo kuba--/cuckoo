@@ -68,7 +68,7 @@ func TestFilter(t *testing.T) {
 		}
 	}
 
-	t.Logf("Error rate (%.1f / %.1f): %.5f\n", float32(nerrors), float32(f.Count()), (float32(nerrors) / float32(f.Count())))
+	t.Logf("err rate (%.1f / %.1f): %.5f\n", float32(nerrors), float32(f.Count()), (float32(nerrors) / float32(f.Count())))
 
 	// Cleaning up
 	for k := range cache {
