@@ -1,8 +1,6 @@
 name: build
 on: [push]
-env:
-  GOPATH: "${HOME}"
-  GOBIN: "${GOPATH}/bin"
+
 jobs:
   build:
     name: ubuntu
