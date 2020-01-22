@@ -35,5 +35,5 @@ jobs:
         go test -bench Delete
         
     - name: Diff
-      run: diff <(GOPATH="${PWD}:${PWD}/vendor" "${GOBIN}/goimports" -d .) <(printf "")
+      run: diff <(GOPATH="${PWD}:${PWD}/vendor" "${GOPATH}/bin/goimports" -d .) <(printf "")
 
