@@ -3,7 +3,6 @@ on: [push]
 env:
   GOPATH: "$ENV{HOME}"
   GOBIN: "$ENV{GOPATH}/bin"
-  PATH: "$ENV{PATH}:$ENV{GOBIN}"
 jobs:
   build:
     name: ubuntu
@@ -38,5 +37,5 @@ jobs:
         go test -bench Delete
         
     - name: Diff
-      run: diff <(GOPATH="$PWD:$PWD/vendor" goimports -d .) <(printf "")
+      run: diff <(GOPATH="${PWD}:${PWD}/vendor" "${GOBIN}/goimports" -d .) <(printf "")
 
