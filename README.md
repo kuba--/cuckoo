@@ -1,6 +1,6 @@
 [![GoDoc](https://godoc.org/github.com/kuba--/cuckoo?status.svg)](http://godoc.org/github.com/kuba--/cuckoo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/kuba--/cuckoo#)](https://goreportcard.com/report/github.com/kuba--/cuckoo)
-[![Build Status](https://travis-ci.org/kuba--/cuckoo.svg?branch=master)](https://travis-ci.org/kuba--/cuckoo)
+[![Build Status](https://github.com/kuba--/cuckoo/workflows/build/badge.svg)](https://github.com/kuba--/cuckoo/actions?query=workflow%3Abuild)
 
 # Cuckoo Filter: Practically Better Than Bloom
 Package _cuckoo_ provides a Cuckoo Filter (Practically Better Than Bloom).
