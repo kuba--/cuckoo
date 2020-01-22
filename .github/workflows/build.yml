@@ -1,7 +1,10 @@
 name: build
 on: [push]
+env:
+  GOPATH: $HOME
+  GOBIN: $GOPATH/bin
+  PATH: $PATH:$GOBIN
 jobs:
-
   build:
     name: ubuntu
     runs-on: ubuntu-latest
