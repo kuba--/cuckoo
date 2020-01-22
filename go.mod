@@ -1,1 +1,3 @@
-module "github.com/kuba--/cuckoo"
+module github.com/kuba--/cuckoo
+
+go 1.13
