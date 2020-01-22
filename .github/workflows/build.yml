@@ -17,9 +17,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Get dependencies
-      run: |
-        go install golang.org/x/tools/cmd/goimports
-        go get -v -t -d ./...        
+      run: go get -v -t -d ./...
 
     - name: Build
       run: |
@@ -33,7 +31,4 @@ jobs:
         go test -bench Insert
         go test -bench Lookup
         go test -bench Delete
-        
-    - name: Diff
-      run: diff <(GOPATH="${PWD}:${PWD}/vendor" "${GOPATH}/bin/goimports" -d .) <(printf "")
 
